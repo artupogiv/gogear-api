@@ -1,5 +1,5 @@
 {
-  "name": "hono",
+  "name": "gogear-api",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
     "build": "bun install && bun db:migrate:deploy && bun db:gen",
