@@ -10,13 +10,13 @@ datasource db {
 model Product {
   id String @id @default(ulid())
 
-  slug String  @unique
-  name String
-  desc String?
+  slug        String  @unique
+  name        String  @unique
+  description String?
 
   imageUrl String
 
-  price Decimal
+  price Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
