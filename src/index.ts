@@ -14,4 +14,6 @@ app.get("/products", async (c) => {
   return c.json(products);
 });
 
+// TODO: Get product by slug
+
 export default app;
