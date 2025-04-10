@@ -1,7 +1,7 @@
-import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { cors } from "hono/cors";
-import { ProductSchema } from "../modules/product/schema";
 import { prisma } from "../lib/prisma";
+import { cors } from "hono/cors";
+import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
+import { ProductSchema } from "../modules/product/schema";
 
 const app = new OpenAPIHono();
 
