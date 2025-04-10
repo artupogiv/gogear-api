@@ -24,8 +24,8 @@ app.openapi(
     },
   }),
   async (c) => {
-    const product = await prisma.product.findMany();
-    const formattedProduct = product.map((product) => ({
+    const products = await prisma.product.findMany();
+    const formattedProduct = products.map((product) => ({
       ...product,
       createdAt: product.createdAt.toISOString(),
       updatedAt: product.updatedAt.toISOString(),
