@@ -1,47 +1,34 @@
-import { ProductCreateInput } from "../../src/types/product";
+import { CreateProduct } from "../../src/types/product";
 
-export const products: ProductCreateInput[] = [
+export const dataProducts: CreateProduct[] = [
   {
-    slug: "mechanical-keyboard-pro",
-    name: "Mechanical Keyboard Pro",
+    slug: "noir-timeless-1800-96%-wireless-mechanical-keyboard-gasket-mount",
+    name: "Noir Timeless1800 96% Wireless Mechanical Keyboard Gasket Mount",
+    categorySlug: "keyboards",
     description:
-      "Premium mechanical keyboard with RGB backlight and Cherry MX switches",
+      "Timeless 1800 – For those who want it all. 98 keys, full numpad, TFT screen, Knob and everything you need in one board",
     imageUrl:
-      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800&auto=format&fit=crop&q=60",
-    price: 2000000, // Rp 2.000.000
+      "https://ucarecdn.com/677b27bf-cc54-4164-9e88-bb07442f6984/timeless_1800Artboard_1_cd6030ba6d334cf398a63022e865d00a.jpg",
+    price: 1299000, // Rp 1.299.000
   },
   {
-    slug: "wireless-mouse-elite",
-    name: "Wireless Mouse Elite",
+    slug: "rexus-mouse-wireless-office-clif-ii-qv-270",
+    name: "Rexus Mouse Wireless Office Clif II QV-270",
+    categorySlug: "mouse",
     description:
-      "Ergonomic wireless mouse with precision tracking and long battery life",
+      "Ergonomic vertical mouse specially designed to provide a comfortable and natural grip.",
     imageUrl:
-      "https://images.unsplash.com/photo-1527814050087-3793815479db?w=800&auto=format&fit=crop&q=60",
-    price: 1200000, // Rp 1.200.000
+      "https://ucarecdn.com/b8f09784-cc77-44b6-bb28-5b8a43e3fde6/Clif_2_2.jpg",
+    price: 349000, // Rp 349.000
   },
   {
-    slug: "gaming-headset-xtreme",
-    name: "Gaming Headset Xtreme",
+    slug: "tenjin-scrollworks-katawaguruma-deskmat",
+    name: "Tenjin Scrollworks - KATAWAGURUMA Deskmat",
+    categorySlug: "deskmat",
     description:
-      "7.1 surround sound gaming headset with noise-canceling microphone",
+      "The third release of Yokai Series, featuring Katawaguruma — the burning ox cart wheel embodiment.",
     imageUrl:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60",
-    price: 2500000, // Rp 2.500.000
-  },
-  {
-    slug: "ultra-wide-monitor",
-    name: "Ultra Wide Monitor",
-    description: "34-inch curved ultra-wide monitor with 144Hz refresh rate",
-    imageUrl:
-      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=800&auto=format&fit=crop&q=60",
-    price: 8000000, // Rp 8.000.000
-  },
-  {
-    slug: "webcam-hd-pro",
-    name: "Webcam HD Pro",
-    description: "1080p HD webcam with auto-focus and noise reduction",
-    imageUrl:
-      "https://images.unsplash.com/photo-1587614382343-4ec70e388b28?w=800&auto=format&fit=crop&q=60",
-    price: 1100000, // Rp 1.100.000
+      "https://ucarecdn.com/17fded15-3cf1-4da9-9705-77d922c8a37a/5802d18c1f504ad58a3f25cce59f30ce.jpg",
+    price: 299000, // Rp 299.000
   },
 ];

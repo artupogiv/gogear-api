@@ -1,7 +1,11 @@
-import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { OpenAPIHono } from "@hono/zod-openapi";
+
 import { prisma } from "./lib/prisma";
 
-const app = new Hono();
+const app = new OpenAPIHono();
+
+app.use(cors());
 
 app.get("/", (c) => {
   return c.json({
@@ -9,11 +13,13 @@ app.get("/", (c) => {
   });
 });
 
-app.get("/products", async (c) => {
-  const products = await prisma.product.findMany();
-  return c.json(products);
-});
-
-// TODO: Get product by slug
+// The OpenAPI documentation will be available at /openapi.json
+app.doc('/openapi.json', {
+  openapi: '3.0.0',
+  info: {
+    title: 'GoGear API',
+    version: '1.0.0',
+  },
+})
 
 export default app;
