@@ -11,7 +11,7 @@ app.use(cors());
 app.openapi(
   createRoute({
     method: "get",
-    path: "/products",
+    path: "/",
     responses: {
       200: {
         content: {
