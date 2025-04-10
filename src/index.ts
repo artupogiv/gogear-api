@@ -1,7 +1,7 @@
 import { cors } from "hono/cors";
 import { OpenAPIHono } from "@hono/zod-openapi";
-
-import { prisma } from "./lib/prisma";
+import { productRoutes } from "./routes/product";
+import { Scalar } from "@scalar/hono-api-reference";
 
 const app = new OpenAPIHono();
 
@@ -20,6 +20,11 @@ app.doc('/openapi.json', {
     title: 'GoGear API',
     version: '1.0.0',
   },
-})
+});
+
+app.route("/products", productRoutes);
+
+// Scalar for OpenAPI documentation
+app.get("/docs", Scalar({ url: "/openapi.json" }));
 
 export default app;
