@@ -1,7 +1,7 @@
 import { prisma } from "../lib/prisma";
 import { cors } from "hono/cors";
 import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { ProductSchema } from "../modules/product/schema";
+import { ProductsSchema } from "../modules/product/schema";
 
 const app = new OpenAPIHono();
 
@@ -16,7 +16,7 @@ app.openapi(
       200: {
         content: {
           "application/json": {
-            schema: ProductSchema,
+            schema: ProductsSchema,
           },
         },
         description: "Get all products",
