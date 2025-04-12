@@ -17,6 +17,6 @@ app.doc('/openapi.json', {
 
 app.route("/products", productRoutes);
 
-app.get("/", Scalar({ url: "/openapi.json" }));
+app.get("/", Scalar({ url: "/openapi.json", pageTitle: "GoGear API" }));
 
 export default app;
