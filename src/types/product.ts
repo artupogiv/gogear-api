@@ -14,7 +14,6 @@ export const ProductSchema = z.object({
 
 export const CreateProductSchema = ProductSchema.omit({
     id: true,
-    slug: true,
     createdAt: true,
     updatedAt: true,
 }).strict();

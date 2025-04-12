@@ -2,7 +2,7 @@ import { CreateProduct } from "../../src/types/product";
 
 export const dataProducts: CreateProduct[] = [
   {
-    slug: "noir-timeless-1800-96%-wireless-mechanical-keyboard-gasket-mount",
+    slug: "noir-timeless-1800-96pct-wireless-mechanical-keyboard-gasket-mount",
     name: "Noir Timeless1800 96% Wireless Mechanical Keyboard Gasket Mount",
     categorySlug: "keyboards",
     description:
