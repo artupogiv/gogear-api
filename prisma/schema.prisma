@@ -24,6 +24,9 @@ model Password {
 
   hash String
 
+  user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId String @unique
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
