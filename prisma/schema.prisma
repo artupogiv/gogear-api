@@ -36,7 +36,7 @@ model Product {
 
   slug        String  @unique
   name        String  @unique
-  description String?
+  description String? @db.Text
   imageUrl    String
   price       Int
 
