@@ -1,4 +1,4 @@
-import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
+import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { prisma } from "../lib/prisma";
 import {
   LoginUserSchema,
@@ -109,6 +109,17 @@ authRoutes.openapi(
     tags: ["Auth"],
     summary: "Me",
     middleware: checkAuthorized,
+    request: {
+      headers: z.object({
+        Authorization: z
+          .string()
+          .regex(/^Bearer .+$/)
+          .openapi({
+            description: "Bearer token for authentication",
+            example: "Bearer ehyajshdasohdlaks.jsakdj...",
+          }),
+      }),
+    },
     responses: {
       200: {
         content: { "application/json": { schema: PrivateUserSchema } },

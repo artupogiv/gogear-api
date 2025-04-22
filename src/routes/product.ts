@@ -109,7 +109,7 @@ productRoutes.openapi(
 productRoutes.openapi(
   createRoute({
     method: "delete",
-    path: "/",
+    path: "/:id",
     tags: ["Products"],
     summary: "Delete product by id",
     request: { params: z.object({ id: z.string() }) },
@@ -126,6 +126,6 @@ productRoutes.openapi(
       return c.notFound();
     }
 
-    return c.body(null, 204);
+    return c.json({ message: "Product deleted", data: product }, 200);
   }
 );
