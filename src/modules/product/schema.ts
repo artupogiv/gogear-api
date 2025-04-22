@@ -13,3 +13,15 @@ export const ProductSchema = z.object({
 });
 
 export const ProductsSchema = z.array(ProductSchema);
+
+export const CreateProductSchema = ProductSchema.omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).strict();
+
+export const UpdateProductSchema = CreateProductSchema.strict();
+
+export type Product = z.infer<typeof ProductSchema>;
+export type CreateProduct = z.infer<typeof CreateProductSchema>;
+export type UpdateProduct = z.infer<typeof UpdateProductSchema>;

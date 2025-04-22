@@ -1,18 +1,20 @@
 import { prisma } from "../lib/prisma";
-import { cors } from "hono/cors";
-import { createRoute, OpenAPIHono } from "@hono/zod-openapi";
-import { ProductsSchema } from "../modules/product/schema";
+import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
+import {
+  CreateProductSchema,
+  ProductSchema,
+  ProductsSchema,
+} from "../modules/product/schema";
 import { ParamSlugSchema } from "../modules/common/schema";
 
-const app = new OpenAPIHono();
+export const productRoutes = new OpenAPIHono();
 
-export const productRoutes = app;
-app.use(cors());
-
-app.openapi(
+//Get all products
+productRoutes.openapi(
   createRoute({
     method: "get",
     path: "/",
+    tags: ["Products"],
     summary: "Get all products",
     description: "Get all products",
     responses: {
@@ -37,10 +39,12 @@ app.openapi(
   }
 );
 
-app.openapi(
+//Get single product by slug
+productRoutes.openapi(
   createRoute({
     method: "get",
     path: "/{slug}",
+    tags: ["Products"],
     summary: "Get product by slug",
     description: "Get product by slug",
     request: { params: ParamSlugSchema },
@@ -61,11 +65,67 @@ app.openapi(
   async (c) => {
     const { slug } = c.req.valid("param");
     const product = await prisma.product.findUnique({
-      where: { slug }
+      where: { slug },
     });
     if (!product) {
       return c.notFound();
     }
     return c.json(product);
+  }
+);
+
+//POST new product
+productRoutes.openapi(
+  createRoute({
+    method: "post",
+    path: "/",
+    tags: ["Products"],
+    summary: "Add new product",
+    request: {
+      body: {
+        content: {
+          "application/json": {
+            schema: CreateProductSchema,
+          },
+        },
+      },
+    },
+    responses: {
+      201: {
+        content: { "application/json": { schema: ProductSchema } },
+        description: "Product successfully created",
+      },
+    },
+  }),
+  async (c) => {
+    const data = await c.req.json();
+    const product = await prisma.product.create({ data });
+
+    return c.json(product, 201);
+  }
+);
+
+//DELETE product by id
+productRoutes.openapi(
+  createRoute({
+    method: "delete",
+    path: "/",
+    tags: ["Products"],
+    summary: "Delete product by id",
+    request: { params: z.object({ id: z.string() }) },
+    responses: {
+      204: { description: "Product successfully deleted" },
+      404: { description: "Product not found" },
+    },
+  }),
+  async (c) => {
+    const { id } = c.req.valid("param");
+    const product = await prisma.product.delete({ where: { id } });
+
+    if (!product) {
+      return c.notFound();
+    }
+
+    return c.body(null, 204);
   }
 );
