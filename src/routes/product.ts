@@ -5,7 +5,7 @@ import {
   ProductSchema,
   ProductsSchema,
 } from "../modules/product/schema";
-import { ParamSlugSchema } from "../modules/common/schema";
+import { ParamSlugSchema, QuerySchema } from "../modules/common/schema";
 
 export const productRoutes = new OpenAPIHono();
 
@@ -71,6 +71,47 @@ productRoutes.openapi(
       return c.notFound();
     }
     return c.json(product);
+  }
+);
+
+//GET search product by keyword
+productRoutes.openapi(
+  createRoute({
+    method: "get",
+    path: "/search",
+    tags: ["Products"],
+    summary: "Get products by keyword",
+    request: { query: QuerySchema },
+    responses: {
+      200: {
+        content: {
+          "application/json": {
+            schema: ProductsSchema,
+          },
+        },
+        description: "Search result",
+      },
+      400: { description: "Bad request" },
+    },
+  }),
+  async (c) => {
+    const { q } = c.req.valid("query");
+    const products = await prisma.product.findMany({
+      where: q
+        ? {
+            OR: [
+              { name: { contains: q, mode: "insensitive" } },
+              { description: { contains: q, mode: "insensitive" } },
+            ],
+          }
+        : {},
+    });
+
+    if (!products) {
+      return c.notFound();
+    }
+
+    return c.json(products);
   }
 );
 
