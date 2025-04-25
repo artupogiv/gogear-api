@@ -139,7 +139,9 @@ productRoutes.openapi(
     },
   }),
   async (c) => {
-    const data = await c.req.json();
+    const body = await c.req.json();
+    const { categorySlug, ...data } = body;
+
     const product = await prisma.product.create({ data });
 
     return c.json(product, 201);
