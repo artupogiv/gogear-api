@@ -4,10 +4,16 @@ import { Scalar } from "@scalar/hono-api-reference";
 import { productRoutes } from "./routes/product";
 import { usersRoute } from "./routes/user";
 import { authRoutes } from "./routes/auth";
+import { cartRoutes } from "./routes/cart";
 
 const app = new OpenAPIHono();
 
 app.use(cors());
+
+app.route("/products", productRoutes);
+app.route("/users", usersRoute);
+app.route("/auth", authRoutes);
+app.route("/cart", cartRoutes);
 
 app.doc("/openapi.json", {
   openapi: "3.0.0",
@@ -17,10 +23,6 @@ app.doc("/openapi.json", {
     description: "API for gogear.com",
   },
 });
-
-app.route("/products", productRoutes);
-app.route("/users", usersRoute);
-app.route("/auth", authRoutes);
 
 app.get(
   "/",
