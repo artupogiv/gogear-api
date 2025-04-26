@@ -101,7 +101,7 @@ authRoutes.openapi(
   }
 );
 
-// POST /auth/me
+// GET /auth/me
 authRoutes.openapi(
   createRoute({
     method: "get",
