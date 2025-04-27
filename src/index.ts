@@ -5,14 +5,16 @@ import { productRoutes } from "./routes/product";
 import { usersRoute } from "./routes/user";
 import { authRoutes } from "./routes/auth";
 import { cartRoutes } from "./routes/cart";
+import { categoryRoutes } from "./routes/category";
 
 const app = new OpenAPIHono();
 
 app.use(cors());
 
 app.route("/products", productRoutes);
-app.route("/users", usersRoute);
+app.route("/collections", categoryRoutes);
 app.route("/auth", authRoutes);
+app.route("/users", usersRoute);
 app.route("/cart", cartRoutes);
 
 app.doc("/openapi.json", {
