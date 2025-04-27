@@ -30,6 +30,8 @@ Auth:
 | `/cart/items/:id`  | `DELETE` | Authenticated |
 | `/cart/items/:id`  | `PUT`    | Authenticated |
 
+ERD:
+
 ## Getting Started
 
 Copy and edit `.env` file:
