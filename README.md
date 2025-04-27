@@ -32,6 +32,8 @@ Auth:
 
 ERD:
 
+<img src=/public/erd.png>
+
 ## Getting Started
 
 Copy and edit `.env` file:
