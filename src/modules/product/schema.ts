@@ -7,7 +7,7 @@ export const ProductSchema = z.object({
   description: z.string().nullable(),
   price: z.number(),
   imageUrl: z.string(),
-  categorySlug: z.string().optional(),
+  categorySlug: z.string().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

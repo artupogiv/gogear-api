@@ -13,29 +13,35 @@ export const productRoutes = new OpenAPIHono();
 productRoutes.openapi(
   createRoute({
     method: "get",
-    path: "/",
+    path: "/collections/products",
     tags: ["Products"],
     summary: "Get all products",
     description: "Get all products",
     responses: {
       200: {
-        content: {
-          "application/json": {
-            schema: ProductsSchema,
-          },
-        },
+        content: { "application/json": { schema: ProductsSchema } },
         description: "Get all products response",
+      },
+      404: {
+        description: "Product not found",
       },
     },
   }),
   async (c) => {
-    const products = await prisma.product.findMany();
-    const formattedProduct = products.map((product) => ({
-      ...product,
-      createdAt: product.createdAt.toISOString(),
-      updatedAt: product.updatedAt.toISOString(),
-    }));
-    return c.json(formattedProduct);
+    try {
+      const products = await prisma.product.findMany({
+        include: { category: { select: { slug: true } } },
+      });
+
+      const formatedProducts = products.map((product) => ({
+        ...products,
+      }));
+
+      return c.json(formatedProducts);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      return c.json({ message: "Failed to fetch products" }, 500);
+    }
   }
 );
 

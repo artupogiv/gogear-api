@@ -11,11 +11,11 @@ const app = new OpenAPIHono();
 
 app.use(cors());
 
-app.route("/products", productRoutes);
-app.route("/collections", categoryRoutes);
 app.route("/auth", authRoutes);
 app.route("/users", usersRoute);
 app.route("/cart", cartRoutes);
+app.route("/collections", categoryRoutes);
+app.route("/products", productRoutes);
 
 app.doc("/openapi.json", {
   openapi: "3.0.0",
